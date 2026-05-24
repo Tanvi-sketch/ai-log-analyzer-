@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: rootlensai-backend
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: MONGODB_URI
+        sync: false
+      - key: DATABASE_NAME
+        value: log_analyzer
+      - key: GROQ_API_KEY
+        sync: false
+      - key: UPLOAD_DIR
+        value: uploads
+      - key: MAX_FILE_SIZE_MB
+        value: "50"
+      - key: ALLOWED_ORIGINS
+        sync: false
